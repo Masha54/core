@@ -1,7 +1,7 @@
 {
 		"name": "@ooopsstudio/observability",
 		"description": "Full observability suite including metrics, tracing, performance monitoring, debugging, and status reporting.",
-		"version": "0.2.0",
+		"version": "0.3.0",
 		"type": "module",
 		"publishConfig": {
 				"access": "public"

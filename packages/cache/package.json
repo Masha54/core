@@ -1,7 +1,7 @@
 {
   "name": "@ooopsstudio/cache",
   "description": "Production-ready caching service with presets for development, production, testing, and custom configurations.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "publishConfig": {
     "access": "public"

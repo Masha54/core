@@ -1,7 +1,7 @@
 {
     "name": "@ooopsstudio/edges",
     "description": "Safe defaults and token-only bridges. Optional, idempotent connectors with no-throw guarantees.",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "type": "module",
     "publishConfig": {
         "access": "public"

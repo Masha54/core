@@ -1,7 +1,7 @@
 {
   "name": "@ooopsstudio/logging",
   "description": "Structured logging service with multiple sinks, log levels, and security-aware redaction capabilities.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "publishConfig": {
     "access": "public"
