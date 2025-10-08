@@ -1,0 +1,126 @@
+{
+		"name": "@ooopsstudio/runtime",
+		"description": "Runtime management service handling lifecycle events, cleanup, controllers, and event coordination.",
+		"version": "0.2.0",
+		"type": "module",
+		"publishConfig": {
+				"access": "public"
+		},
+		"sideEffects": false,
+		"license": "MIT",
+		"engines": {
+				"node": ">=20 <23"
+		},
+		"exports": {
+				".": null,
+				"./cleanup/development": {
+						"types": "./dist/cleanup/public/development.d.ts",
+						"import": "./dist/cleanup/public/development.js"
+				},
+				"./cleanup/production": {
+						"types": "./dist/cleanup/public/production.d.ts",
+						"import": "./dist/cleanup/public/production.js"
+				},
+				"./cleanup/testing": {
+						"types": "./dist/cleanup/public/testing.d.ts",
+						"import": "./dist/cleanup/public/testing.js"
+				},
+				"./cleanup/minimal": {
+						"types": "./dist/cleanup/public/minimal.d.ts",
+						"import": "./dist/cleanup/public/minimal.js"
+				},
+				"./cleanup/custom": {
+						"types": "./dist/cleanup/public/custom.d.ts",
+						"import": "./dist/cleanup/public/custom.js"
+				},
+				"./cleanup/types": {
+						"types": "./dist/cleanup/public/types.d.ts",
+						"import": "./dist/cleanup/public/types.js"
+				},
+				"./controller/development": {
+						"types": "./dist/controller/public/development.d.ts",
+						"import": "./dist/controller/public/development.js"
+				},
+				"./controller/production": {
+						"types": "./dist/controller/public/production.d.ts",
+						"import": "./dist/controller/public/production.js"
+				},
+				"./controller/testing": {
+						"types": "./dist/controller/public/testing.d.ts",
+						"import": "./dist/controller/public/testing.js"
+				},
+				"./controller/minimal": {
+						"types": "./dist/controller/public/minimal.d.ts",
+						"import": "./dist/controller/public/minimal.js"
+				},
+				"./controller/custom": {
+						"types": "./dist/controller/public/custom.d.ts",
+						"import": "./dist/controller/public/custom.js"
+				},
+				"./controller/types": {
+						"types": "./dist/controller/public/types.d.ts",
+						"import": "./dist/controller/public/types.js"
+				},
+				"./events/development": {
+						"types": "./dist/events/public/development.d.ts",
+						"import": "./dist/events/public/development.js"
+				},
+				"./events/production": {
+						"types": "./dist/events/public/production.d.ts",
+						"import": "./dist/events/public/production.js"
+				},
+				"./events/testing": {
+						"types": "./dist/events/public/testing.d.ts",
+						"import": "./dist/events/public/testing.js"
+				},
+				"./events/minimal": {
+						"types": "./dist/events/public/minimal.d.ts",
+						"import": "./dist/events/public/minimal.js"
+				},
+				"./events/custom": {
+						"types": "./dist/events/public/custom.d.ts",
+						"import": "./dist/events/public/custom.js"
+				},
+				"./events/types": {
+						"types": "./dist/events/public/types.d.ts",
+						"import": "./dist/events/public/types.js"
+				},
+				"./lifecycle/development": {
+						"types": "./dist/lifecycle/public/development.d.ts",
+						"import": "./dist/lifecycle/public/development.js"
+				},
+				"./lifecycle/production": {
+						"types": "./dist/lifecycle/public/production.d.ts",
+						"import": "./dist/lifecycle/public/production.js"
+				},
+				"./lifecycle/testing": {
+						"types": "./dist/lifecycle/public/testing.d.ts",
+						"import": "./dist/lifecycle/public/testing.js"
+				},
+				"./lifecycle/minimal": {
+						"types": "./dist/lifecycle/public/minimal.d.ts",
+						"import": "./dist/lifecycle/public/minimal.js"
+				},
+				"./lifecycle/custom": {
+						"types": "./dist/lifecycle/public/custom.d.ts",
+						"import": "./dist/lifecycle/public/custom.js"
+				},
+				"./lifecycle/types": {
+						"types": "./dist/lifecycle/public/types.d.ts",
+						"import": "./dist/lifecycle/public/types.js"
+				}
+		},
+		"files": [
+				"dist"
+		],
+		"scripts": {
+				"typecheck": "tsc -p tsconfig.json --noEmit",
+				"lint": "eslint .",
+				"test": "vitest run",
+				"build": "tsup",
+				"depcruise": "depcruise --no-config src",
+				"size": "size-limit",
+				"publint": "publint",
+				"attw": "pnpm -r --filter \"./packages/*\" exec attw --pack --ignore-rules no-resolution --ignore-rules cjs-resolves-to-esm"
+		}
+}

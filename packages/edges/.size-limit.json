@@ -1,0 +1,4 @@
+[
+  { "name": "edges: defaults", "path": ["dist/defaults/**/*.js"], "limit": "6 KB" },
+  { "name": "edges: bridges",  "path": ["dist/bridges/**/*.js"],  "limit": "6 KB" }
+]

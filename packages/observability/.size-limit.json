@@ -1,0 +1,31 @@
+[
+  { "name": "observability/debug: development",     "path": ["dist/debug/public/development.js"],     "limit": "5 KB" },
+  { "name": "observability/debug: production",      "path": ["dist/debug/public/production.js"],      "limit": "3 KB" },
+  { "name": "observability/debug: testing",         "path": ["dist/debug/public/testing.js"],         "limit": "3 KB" },
+  { "name": "observability/debug: minimal",         "path": ["dist/debug/public/minimal.js"],         "limit": "2 KB" },
+  { "name": "observability/debug: custom",          "path": ["dist/debug/public/custom.js"],          "limit": "6 KB" },
+
+  { "name": "observability/metrics: development",   "path": ["dist/metrics/public/development.js"],   "limit": "8 KB" },
+  { "name": "observability/metrics: production",    "path": ["dist/metrics/public/production.js"],    "limit": "8 KB" },
+  { "name": "observability/metrics: testing",       "path": ["dist/metrics/public/testing.js"],       "limit": "6 KB" },
+  { "name": "observability/metrics: minimal",       "path": ["dist/metrics/public/minimal.js"],       "limit": "4 KB" },
+  { "name": "observability/metrics: custom",        "path": ["dist/metrics/public/custom.js"],        "limit": "10 KB" },
+
+  { "name": "observability/performance: development","path": ["dist/performance/public/development.js"],"limit": "8 KB" },
+  { "name": "observability/performance: production", "path": ["dist/performance/public/production.js"], "limit": "8 KB" },
+  { "name": "observability/performance: testing",    "path": ["dist/performance/public/testing.js"],    "limit": "6 KB" },
+  { "name": "observability/performance: minimal",    "path": ["dist/performance/public/minimal.js"],    "limit": "4 KB" },
+  { "name": "observability/performance: custom",     "path": ["dist/performance/public/custom.js"],     "limit": "10 KB" },
+
+  { "name": "observability/status: development",    "path": ["dist/status/public/development.js"],    "limit": "6 KB" },
+  { "name": "observability/status: production",     "path": ["dist/status/public/production.js"],     "limit": "6 KB" },
+  { "name": "observability/status: testing",        "path": ["dist/status/public/testing.js"],        "limit": "5 KB" },
+  { "name": "observability/status: minimal",        "path": ["dist/status/public/minimal.js"],        "limit": "4 KB" },
+  { "name": "observability/status: custom",         "path": ["dist/status/public/custom.js"],         "limit": "8 KB" },
+
+  { "name": "observability/tracing: development",   "path": ["dist/tracing/public/development.js"],   "limit": "8 KB" },
+  { "name": "observability/tracing: production",    "path": ["dist/tracing/public/production.js"],    "limit": "8 KB" },
+  { "name": "observability/tracing: testing",       "path": ["dist/tracing/public/testing.js"],       "limit": "6 KB" },
+  { "name": "observability/tracing: minimal",       "path": ["dist/tracing/public/minimal.js"],       "limit": "4 KB" },
+  { "name": "observability/tracing: custom",        "path": ["dist/tracing/public/custom.js"],        "limit": "10 KB" }
+]

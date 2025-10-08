@@ -1,0 +1,37 @@
+tokens:
+  # Logging system
+  - id: logging
+    key: "@ooopsstudio/logging"          # used with Symbol.for(key)
+    exportPath: "@ooopsstudio/root/tokens"
+    since: "0.1.0"
+    status: stable
+    description: "Token to obtain an inbound Logger port instance."
+
+  - id: log-sink
+    key: "@ooopsstudio/log-sink"
+    exportPath: "@ooopsstudio/root/tokens"
+    since: "0.1.0"
+    status: stable
+    description: "Token for an outbound Sink<LogRecord>."
+
+  - id: recent-log-events
+    key: "@ooopsstudio/recent-log-events"
+    exportPath: "@ooopsstudio/root/tokens"
+    since: "0.1.0"
+    status: stable
+    description: "Token for RecentEvents<LogRecord> ring buffer."
+
+  # Common utilities
+  - id: clock
+    key: "@ooopsstudio/clock"
+    exportPath: "@ooopsstudio/root/tokens"
+    since: "0.1.0"
+    status: stable
+    description: "Token for a Clock provider."
+
+  - id: security-redaction
+    key: "@ooopsstudio/security-redaction"
+    exportPath: "@ooopsstudio/root/tokens"
+    since: "0.1.0"
+    status: stable
+    description: "Token for a SecurityRedactor port."

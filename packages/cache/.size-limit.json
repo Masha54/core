@@ -1,0 +1,7 @@
+[
+  { "name": "cache: development", "path": ["dist/public/development.js"], "limit": "6 KB" },
+  { "name": "cache: production",  "path": ["dist/public/production.js"],  "limit": "6 KB" },
+  { "name": "cache: testing",     "path": ["dist/public/testing.js"],     "limit": "5 KB" },
+  { "name": "cache: minimal",     "path": ["dist/public/minimal.js"],     "limit": "4 KB" },
+  { "name": "cache: custom",      "path": ["dist/public/custom.js"],      "limit": "8 KB" }
+]

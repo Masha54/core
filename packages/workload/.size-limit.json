@@ -1,0 +1,19 @@
+[
+  { "name": "workload/ratelimit: development", "path": ["dist/ratelimit/public/development.js"], "limit": "10 KB" },
+  { "name": "workload/ratelimit: production",  "path": ["dist/ratelimit/public/production.js"],  "limit": "10 KB" },
+  { "name": "workload/ratelimit: testing",     "path": ["dist/ratelimit/public/testing.js"],     "limit": "8 KB"  },
+  { "name": "workload/ratelimit: minimal",     "path": ["dist/ratelimit/public/minimal.js"],     "limit": "6 KB"  },
+  { "name": "workload/ratelimit: custom",      "path": ["dist/ratelimit/public/custom.js"],      "limit": "12 KB" },
+
+  { "name": "workload/resilience: development", "path": ["dist/resilience/public/development.js"], "limit": "12 KB" },
+  { "name": "workload/resilience: production",  "path": ["dist/resilience/public/production.js"],  "limit": "12 KB" },
+  { "name": "workload/resilience: testing",     "path": ["dist/resilience/public/testing.js"],     "limit": "10 KB" },
+  { "name": "workload/resilience: minimal",     "path": ["dist/resilience/public/minimal.js"],     "limit": "8 KB"  },
+  { "name": "workload/resilience: custom",      "path": ["dist/resilience/public/custom.js"],      "limit": "14 KB" },
+
+  { "name": "workload/scheduling: development", "path": ["dist/scheduling/public/development.js"], "limit": "10 KB" },
+  { "name": "workload/scheduling: production",  "path": ["dist/scheduling/public/production.js"],  "limit": "10 KB" },
+  { "name": "workload/scheduling: testing",     "path": ["dist/scheduling/public/testing.js"],     "limit": "8 KB"  },
+  { "name": "workload/scheduling: minimal",     "path": ["dist/scheduling/public/minimal.js"],     "limit": "6 KB"  },
+  { "name": "workload/scheduling: custom",      "path": ["dist/scheduling/public/custom.js"],      "limit": "12 KB" }
+]
