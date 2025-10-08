@@ -1,7 +1,7 @@
 {
 	"name": "@ooopsstudio/engines",
 	"description": "DI-free factories and primitives. Pure mechanisms including datastructures, time, transport, validation, and more.",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"type": "module",
 	"publishConfig": {
 		"access": "public"

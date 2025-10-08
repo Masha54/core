@@ -1,7 +1,7 @@
 {
   "name": "@ooopsstudio/security",
   "description": "Security utilities including encryption, authentication, authorization, and data protection services.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "publishConfig": {
     "access": "public"

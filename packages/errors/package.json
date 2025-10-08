@@ -1,7 +1,7 @@
 {
   "name": "@ooopsstudio/errors",
   "description": "Comprehensive error handling service with structured error types, recovery strategies, and reporting.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "publishConfig": {
     "access": "public"
