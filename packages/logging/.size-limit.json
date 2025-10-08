@@ -1,0 +1,7 @@
+[
+  { "name": "logging: development", "path": ["dist/public/development.js"], "limit": "30 KB" },
+  { "name": "logging: production",  "path": ["dist/public/production.js"],  "limit": "30 KB" },
+  { "name": "logging: testing",     "path": ["dist/public/testing.js"],     "limit": "20 KB" },
+  { "name": "logging: minimal",     "path": ["dist/public/minimal.js"],     "limit": "15 KB" },
+  { "name": "logging: custom",      "path": ["dist/public/custom.js"],      "limit": "40 KB" }
+]

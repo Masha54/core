@@ -1,0 +1,129 @@
+{
+    "name": "@ooopsstudio/edges",
+    "description": "Safe defaults and token-only bridges. Optional, idempotent connectors with no-throw guarantees.",
+    "version": "0.0.0",
+    "type": "module",
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "license": "MIT",
+    "engines": {
+        "node": ">=20 <23"
+    },
+    "exports": {
+        "./defaults/cache": {
+            "types": "./dist/defaults/cache.d.ts",
+            "import": "./dist/defaults/cache.js"
+        },
+        "./defaults/cleanup": {
+            "types": "./dist/defaults/cleanup.d.ts",
+            "import": "./dist/defaults/cleanup.js"
+        },
+        "./defaults/controller": {
+            "types": "./dist/defaults/controller.d.ts",
+            "import": "./dist/defaults/controller.js"
+        },
+        "./defaults/debug": {
+            "types": "./dist/defaults/debug.d.ts",
+            "import": "./dist/defaults/debug.js"
+        },
+        "./defaults/errors": {
+            "types": "./dist/defaults/errors.d.ts",
+            "import": "./dist/defaults/errors.js"
+        },
+        "./defaults/events": {
+            "types": "./dist/defaults/events.d.ts",
+            "import": "./dist/defaults/events.js"
+        },
+        "./defaults/lifecycle": {
+            "types": "./dist/defaults/lifecycle.d.ts",
+            "import": "./dist/defaults/lifecycle.js"
+        },
+        "./defaults/logging": {
+            "types": "./dist/defaults/logging.d.ts",
+            "import": "./dist/defaults/logging.js"
+        },
+        "./defaults/metrics": {
+            "types": "./dist/defaults/metrics.d.ts",
+            "import": "./dist/defaults/metrics.js"
+        },
+        "./defaults/performance": {
+            "types": "./dist/defaults/performance.d.ts",
+            "import": "./dist/defaults/performance.js"
+        },
+        "./defaults/ratelimit": {
+            "types": "./dist/defaults/ratelimit.d.ts",
+            "import": "./dist/defaults/ratelimit.js"
+        },
+        "./defaults/resilience": {
+            "types": "./dist/defaults/resilience.d.ts",
+            "import": "./dist/defaults/resilience.js"
+        },
+        "./defaults/scheduling": {
+            "types": "./dist/defaults/scheduling.d.ts",
+            "import": "./dist/defaults/scheduling.js"
+        },
+        "./defaults/security": {
+            "types": "./dist/defaults/security.d.ts",
+            "import": "./dist/defaults/security.js"
+        },
+        "./defaults/status": {
+            "types": "./dist/defaults/status.d.ts",
+            "import": "./dist/defaults/status.js"
+        },
+        "./defaults/tracing": {
+            "types": "./dist/defaults/tracing.d.ts",
+            "import": "./dist/defaults/tracing.js"
+        },
+        "./bridges/cache-to-metrics": {
+            "types": "./dist/bridges/cache-to-metrics.d.ts",
+            "import": "./dist/bridges/cache-to-metrics.js"
+        },
+        "./bridges/errors-to-logging": {
+            "types": "./dist/bridges/errors-to-logging.d.ts",
+            "import": "./dist/bridges/errors-to-logging.js"
+        },
+        "./bridges/logging-to-metrics": {
+            "types": "./dist/bridges/logging-to-metrics.d.ts",
+            "import": "./dist/bridges/logging-to-metrics.js"
+        },
+        "./bridges/logging-to-tracing": {
+            "types": "./dist/bridges/logging-to-tracing.d.ts",
+            "import": "./dist/bridges/logging-to-tracing.js"
+        },
+        "./bridges/performance-to-metrics": {
+            "types": "./dist/bridges/performance-to-metrics.d.ts",
+            "import": "./dist/bridges/performance-to-metrics.js"
+        },
+        "./bridges/ratelimit-to-metrics": {
+            "types": "./dist/bridges/ratelimit-to-metrics.d.ts",
+            "import": "./dist/bridges/ratelimit-to-metrics.js"
+        },
+        "./bridges/resilience-to-metrics": {
+            "types": "./dist/bridges/resilience-to-metrics.d.ts",
+            "import": "./dist/bridges/resilience-to-metrics.js"
+        },
+        "./bridges/scheduling-to-metrics": {
+            "types": "./dist/bridges/scheduling-to-metrics.d.ts",
+            "import": "./dist/bridges/scheduling-to-metrics.js"
+        },
+        "./bridges/status-to-metrics": {
+            "types": "./dist/bridges/status-to-metrics.d.ts",
+            "import": "./dist/bridges/status-to-metrics.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "typecheck": "tsc -p tsconfig.json --noEmit",
+        "lint": "eslint .",
+        "test": "vitest run",
+        "build": "tsup",
+        "depcruise": "depcruise --no-config src",
+        "size": "size-limit",
+        "publint": "publint",
+        "attw": "pnpm -r --filter \"./packages/*\" exec attw --pack --ignore-rules no-resolution --ignore-rules cjs-resolves-to-esm"
+    }
+}

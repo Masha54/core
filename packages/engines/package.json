@@ -1,0 +1,78 @@
+{
+	"name": "@ooopsstudio/engines",
+	"description": "DI-free factories and primitives. Pure mechanisms including datastructures, time, transport, validation, and more.",
+	"version": "0.0.0",
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"sideEffects": false,
+	"license": "MIT",
+	"engines": {
+		"node": ">=20 <23"
+	},
+	"exports": {
+		".": null,
+		"./async": {
+			"types": "./dist/async/index.d.ts",
+			"import": "./dist/async/index.js"
+		},
+		"./channels": {
+			"types": "./dist/channels/index.d.ts",
+			"import": "./dist/channels/index.js"
+		},
+		"./concurrency": {
+			"types": "./dist/concurrency/index.d.ts",
+			"import": "./dist/concurrency/index.js"
+		},
+		"./datastructures": {
+			"types": "./dist/datastructures/index.d.ts",
+			"import": "./dist/datastructures/index.js"
+		},
+		"./hashing": {
+			"types": "./dist/hashing/index.d.ts",
+			"import": "./dist/hashing/index.js"
+		},
+		"./pipeline": {
+			"types": "./dist/pipeline/index.d.ts",
+			"import": "./dist/pipeline/index.js"
+		},
+		"./rate": {
+			"types": "./dist/rate/index.d.ts",
+			"import": "./dist/rate/index.js"
+		},
+		"./serde": {
+			"types": "./dist/serde/index.d.ts",
+			"import": "./dist/serde/index.js"
+		},
+		"./stats": {
+			"types": "./dist/stats/index.d.ts",
+			"import": "./dist/stats/index.js"
+		},
+		"./time": {
+			"types": "./dist/time/index.d.ts",
+			"import": "./dist/time/index.js"
+		},
+		"./transport": {
+			"types": "./dist/transport/index.d.ts",
+			"import": "./dist/transport/index.js"
+		},
+		"./validation": {
+			"types": "./dist/validation/index.d.ts",
+			"import": "./dist/validation/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"lint": "eslint .",
+		"test": "vitest",
+		"build": "tsup",
+		"depcruise": "depcruise --no-config src",
+		"size": "size-limit",
+		"publint": "publint",
+		"attw": "pnpm -r --filter \"./packages/*\" exec attw --pack --ignore-rules no-resolution --ignore-rules cjs-resolves-to-esm"
+	}
+}

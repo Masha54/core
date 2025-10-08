@@ -1,0 +1,57 @@
+{
+  "name": "@ooopsstudio/security",
+  "description": "Security utilities including encryption, authentication, authorization, and data protection services.",
+  "version": "0.0.0",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./development": {
+      "types": "./dist/public/development.d.ts",
+      "import": "./dist/public/development.js"
+    },
+    "./production": {
+      "types": "./dist/public/production.d.ts",
+      "import": "./dist/public/production.js"
+    },
+    "./testing": {
+      "types": "./dist/public/testing.d.ts",
+      "import": "./dist/public/testing.js"
+    },
+    "./minimal": {
+      "types": "./dist/public/minimal.d.ts",
+      "import": "./dist/public/minimal.js"
+    },
+    "./custom": {
+      "types": "./dist/public/custom.d.ts",
+      "import": "./dist/public/custom.js"
+    },
+    "./types": {
+      "types": "./dist/public/types.d.ts",
+      "import": "./dist/public/types.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "build": "tsup",
+    "depcruise": "depcruise --no-config src",
+    "size": "size-limit",
+    "publint": "publint",
+    "attw": "pnpm -r --filter \"./packages/*\" exec attw --pack --ignore-rules no-resolution --ignore-rules cjs-resolves-to-esm"
+  }
+}

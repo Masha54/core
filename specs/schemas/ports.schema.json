@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ports.schema.json",
+  "type": "object",
+  "required": ["ports"],
+  "properties": {
+    "ports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "direction", "module", "type", "since"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "direction": { "enum": ["inbound", "outbound", "common"] },
+          "module": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "minLength": 1 },
+          "typeParams": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "since": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$" },
+          "status": { "enum": ["stable", "experimental", "deprecated"] },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

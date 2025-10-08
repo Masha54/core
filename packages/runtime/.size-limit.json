@@ -1,0 +1,20 @@
+[
+  { "name": "runtime/cleanup: development",   "path": ["dist/cleanup/public/development.js"],   "limit": "8 KB" },
+  { "name": "runtime/cleanup: production",    "path": ["dist/cleanup/public/production.js"],    "limit": "8 KB" },
+  { "name": "runtime/cleanup: testing",       "path": ["dist/cleanup/public/testing.js"],       "limit": "6 KB" },
+  { "name": "runtime/cleanup: minimal",       "path": ["dist/cleanup/public/minimal.js"],       "limit": "4 KB" },
+  { "name": "runtime/cleanup: custom",        "path": ["dist/cleanup/public/custom.js"],        "limit": "10 KB" },
+
+  { "name": "runtime/controller: development","path": ["dist/controller/public/development.js"],"limit": "8 KB" },
+  { "name": "runtime/controller: production", "path": ["dist/controller/public/production.js"], "limit": "8 KB" },
+  { "name": "runtime/controller: testing",    "path": ["dist/controller/public/testing.js"],    "limit": "6 KB" },
+  { "name": "runtime/controller: minimal",    "path": ["dist/controller/public/minimal.js"],    "limit": "4 KB" },
+  { "name": "runtime/controller: custom",     "path": ["dist/controller/public/custom.js"],     "limit": "10 KB" },
+
+  { "name": "runtime/lifecycle: development", "path": ["dist/lifecycle/public/development.js"], "limit": "8 KB" },
+  { "name": "runtime/lifecycle: production",  "path": ["dist/lifecycle/public/production.js"],  "limit": "8 KB" },
+  { "name": "runtime/lifecycle: testing",     "path": ["dist/lifecycle/public/testing.js"],     "limit": "6 KB" },
+  { "name": "runtime/lifecycle: minimal",     "path": ["dist/lifecycle/public/minimal.js"],     "limit": "4 KB" },
+  { "name": "runtime/lifecycle: custom",      "path": ["dist/lifecycle/public/custom.js"],      "limit": "10 KB" }
+
+]

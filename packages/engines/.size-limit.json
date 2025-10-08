@@ -1,0 +1,14 @@
+[
+  { "name": "engines: async",          "path": ["dist/async/*.js"],          "limit": "4 KB"  },
+  { "name": "engines: channels",       "path": ["dist/channels/*.js"],       "limit": "6 KB"  },
+  { "name": "engines: concurrency",    "path": ["dist/concurrency/*.js"],    "limit": "6 KB"  },
+  { "name": "engines: datastructures", "path": ["dist/datastructures/*.js"], "limit": "12 KB" },
+  { "name": "engines: hashing",        "path": ["dist/hashing/*.js"],        "limit": "3 KB"  },
+  { "name": "engines: pipeline",       "path": ["dist/pipeline/*.js"],       "limit": "2 KB"  },
+  { "name": "engines: rate",           "path": ["dist/rate/*.js"],           "limit": "6 KB"  },
+  { "name": "engines: serde",          "path": ["dist/serde/*.js"],          "limit": "6 KB"  },
+  { "name": "engines: stats",          "path": ["dist/stats/*.js"],          "limit": "6 KB"  },
+  { "name": "engines: time",           "path": ["dist/time/*.js"],           "limit": "3 KB"  },
+  { "name": "engines: transport",      "path": ["dist/transport/*.js"],      "limit": "12 KB" },
+  { "name": "engines: validation",     "path": ["dist/validation/*.js"],     "limit": "6 KB"  }
+]

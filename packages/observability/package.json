@@ -1,0 +1,150 @@
+{
+		"name": "@ooopsstudio/observability",
+		"description": "Full observability suite including metrics, tracing, performance monitoring, debugging, and status reporting.",
+		"version": "0.2.0",
+		"type": "module",
+		"publishConfig": {
+				"access": "public"
+		},
+		"sideEffects": false,
+		"license": "MIT",
+		"engines": {
+				"node": ">=20 <23"
+		},
+		"exports": {
+				".": null,
+				"./debug/development": {
+						"types": "./dist/debug/public/development.d.ts",
+						"import": "./dist/debug/public/development.js"
+				},
+				"./debug/production": {
+						"types": "./dist/debug/public/production.d.ts",
+						"import": "./dist/debug/public/production.js"
+				},
+				"./debug/testing": {
+						"types": "./dist/debug/public/testing.d.ts",
+						"import": "./dist/debug/public/testing.js"
+				},
+				"./debug/minimal": {
+						"types": "./dist/debug/public/minimal.d.ts",
+						"import": "./dist/debug/public/minimal.js"
+				},
+				"./debug/custom": {
+						"types": "./dist/debug/public/custom.d.ts",
+						"import": "./dist/debug/public/custom.js"
+				},
+				"./debug/types": {
+						"types": "./dist/debug/public/types.d.ts",
+						"import": "./dist/debug/public/types.js"
+				},
+				"./metrics/development": {
+						"types": "./dist/metrics/public/development.d.ts",
+						"import": "./dist/metrics/public/development.js"
+				},
+				"./metrics/production": {
+						"types": "./dist/metrics/public/production.d.ts",
+						"import": "./dist/metrics/public/production.js"
+				},
+				"./metrics/testing": {
+						"types": "./dist/metrics/public/testing.d.ts",
+						"import": "./dist/metrics/public/testing.js"
+				},
+				"./metrics/minimal": {
+						"types": "./dist/metrics/public/minimal.d.ts",
+						"import": "./dist/metrics/public/minimal.js"
+				},
+				"./metrics/custom": {
+						"types": "./dist/metrics/public/custom.d.ts",
+						"import": "./dist/metrics/public/custom.js"
+				},
+				"./metrics/types": {
+						"types": "./dist/metrics/public/types.d.ts",
+						"import": "./dist/metrics/public/types.js"
+				},
+				"./performance/development": {
+						"types": "./dist/performance/public/development.d.ts",
+						"import": "./dist/performance/public/development.js"
+				},
+				"./performance/production": {
+						"types": "./dist/performance/public/production.d.ts",
+						"import": "./dist/performance/public/production.js"
+				},
+				"./performance/testing": {
+						"types": "./dist/performance/public/testing.d.ts",
+						"import": "./dist/performance/public/testing.js"
+				},
+				"./performance/minimal": {
+						"types": "./dist/performance/public/minimal.d.ts",
+						"import": "./dist/performance/public/minimal.js"
+				},
+				"./performance/custom": {
+						"types": "./dist/performance/public/custom.d.ts",
+						"import": "./dist/performance/public/custom.js"
+				},
+				"./performance/types": {
+						"types": "./dist/performance/public/types.d.ts",
+						"import": "./dist/performance/public/types.js"
+				},
+				"./status/development": {
+						"types": "./dist/status/public/development.d.ts",
+						"import": "./dist/status/public/development.js"
+				},
+				"./status/production": {
+						"types": "./dist/status/public/production.d.ts",
+						"import": "./dist/status/public/production.js"
+				},
+				"./status/testing": {
+						"types": "./dist/status/public/testing.d.ts",
+						"import": "./dist/status/public/testing.js"
+				},
+				"./status/minimal": {
+						"types": "./dist/status/public/minimal.d.ts",
+						"import": "./dist/status/public/minimal.js"
+				},
+				"./status/custom": {
+						"types": "./dist/status/public/custom.d.ts",
+						"import": "./dist/status/public/custom.js"
+				},
+				"./status/types": {
+						"types": "./dist/status/public/types.d.ts",
+						"import": "./dist/status/public/types.js"
+				},
+				"./tracing/development": {
+						"types": "./dist/tracing/public/development.d.ts",
+						"import": "./dist/tracing/public/development.js"
+				},
+				"./tracing/production": {
+						"types": "./dist/tracing/public/production.d.ts",
+						"import": "./dist/tracing/public/production.js"
+				},
+				"./tracing/testing": {
+						"types": "./dist/tracing/public/testing.d.ts",
+						"import": "./dist/tracing/public/testing.js"
+				},
+				"./tracing/minimal": {
+						"types": "./dist/tracing/public/minimal.d.ts",
+						"import": "./dist/tracing/public/minimal.js"
+				},
+				"./tracing/custom": {
+						"types": "./dist/tracing/public/custom.d.ts",
+						"import": "./dist/tracing/public/custom.js"
+				},
+				"./tracing/types": {
+						"types": "./dist/tracing/public/types.d.ts",
+						"import": "./dist/tracing/public/types.js"
+				}
+		},
+		"files": [
+				"dist"
+		],
+		"scripts": {
+				"typecheck": "tsc -p tsconfig.json --noEmit",
+				"lint": "eslint .",
+				"test": "vitest run",
+				"build": "tsup",
+				"depcruise": "depcruise --no-config src",
+				"size": "size-limit",
+				"publint": "publint",
+				"attw": "pnpm -r --filter \"./packages/*\" exec attw --pack --ignore-rules no-resolution --ignore-rules cjs-resolves-to-esm"
+		}
+}

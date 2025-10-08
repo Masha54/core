@@ -1,0 +1,7 @@
+[
+  { "name": "errors: development", "path": ["dist/public/development.js"], "limit": "15 KB" },
+  { "name": "errors: production",  "path": ["dist/public/production.js"],  "limit": "15 KB" },
+  { "name": "errors: testing",     "path": ["dist/public/testing.js"],     "limit": "10 KB" },
+  { "name": "errors: minimal",     "path": ["dist/public/minimal.js"],     "limit": "6 KB"  },
+  { "name": "errors: custom",      "path": ["dist/public/custom.js"],      "limit": "18 KB" }
+]

@@ -64,16 +64,118 @@ export default [
 
 			// Don’t import other packages’ internals or test helpers
 			'no-restricted-imports': ['error', {
+				paths: [
+					// root barrels banned — force explicit subpaths
+					{name: '@ooopsstudio/root/contracts', message: 'Import a specific contract subpath.'},
+					{name: '@ooopsstudio/root/ports',     message: 'Import a specific port subpath.'},
+					// engines barrel banned — force subpaths like @ooopsstudio/engines/time
+					{name: '@ooopsstudio/engines',        message: 'Import an engine subpath, e.g. @ooopsstudio/engines/time.'}
+				],
 				patterns: [
-					{group: ['@*/**/src/**'], message: 'Do not import package internals. Use published exports only.'},
-					{group: ['@*/**/(test|__tests__|testing)/**'], message: 'Testing helpers are not allowed in runtime code.'}
-				]}
-			],
+					// belts & suspenders
+					{group: ['@ooopsstudio/root/contracts', '@ooopsstudio/root/ports'], message: 'Import specific subpaths.'},
+					// no test helpers in runtime
+					{group: ['@ooopsstudio/*/testing/*'], message: 'Testing helpers are not allowed in runtime code.'},
+					// no deep internals from other packages
+					{group: ['@ooopsstudio/*/src/**'], message: 'Do not import package internals. Use published exports/subpaths only.'},
+					// config/env are app-layer only
+					{group: ['@ooopsstudio/config', '@ooopsstudio/config/**', '@ooopsstudio/env', '@ooopsstudio/env/**'], message: 'Libraries must not import app configuration packages.'}
+				]
+			}],
 			// Import hygiene
 			'import/order': ['error', {
 				groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
 				alphabetize: {order: 'asc', caseInsensitive: true},
 				'newlines-between': 'always'
+			}]
+		}
+	},
+	// Ban `@ooopsstudio/edges` from all library/runtime source (services must not import edges).
+	{
+		files: ['packages/**/src/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				paths: [
+					{name: '@ooopsstudio/root/contracts', message: 'Import a specific contract subpath.'},
+					{name: '@ooopsstudio/root/ports',     message: 'Import a specific port subpath.'},
+					{name: '@ooopsstudio/engines',        message: 'Import an engine subpath, e.g. @ooopsstudio/engines/time.'}
+				],
+				patterns: [
+					{group: ['@ooopsstudio/root/contracts', '@ooopsstudio/root/ports'], message: 'Import specific subpaths.'},
+					{group: ['@ooopsstudio/*/testing/*'], message: 'Testing helpers are not allowed in runtime code.'},
+					{group: ['@ooopsstudio/*/src/**'], message: 'Do not import package internals. Use published exports/subpaths only.'},
+					{group: ['@ooopsstudio/config', '@ooopsstudio/config/**', '@ooopsstudio/env', '@ooopsstudio/env/**'], message: 'Libraries must not import app configuration packages.'},
+					{group: ['@ooopsstudio/edges'], message: 'Edges are not allowed in library/runtime code.'},
+					{group: ['@ooopsstudio/edges/**'], message: 'Edges are not allowed in library/runtime code.'}
+				]
+			}]
+		}
+	},
+
+	// Root must not import anything from other packages.
+	{
+		files: ['packages/root/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/*']
+			}]
+		}
+	},
+
+	// Service ↔ service bans (self-aware per package)
+	{
+		files: ['packages/logging/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/{security,error-handling,cache,observability,runtime,workload}{,/**}', '@ooopsstudio/edges{,/**}']
+			}]
+		}
+	},
+	{
+		files: ['packages/security/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/{logging,error-handling,cache,observability,runtime,workload}{,/**}', '@ooopsstudio/edges{,/**}']
+			}]
+		}
+	},
+	{
+		files: ['packages/error-handling/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/{logging,security,cache,observability,runtime,workload}{,/**}', '@ooopsstudio/edges{,/**}']
+			}]
+		}
+	},
+	{
+		files: ['packages/cache/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/{logging,security,error-handling,observability,runtime,workload}{,/**}', '@ooopsstudio/edges{,/**}']
+			}]
+		}
+	},
+	{
+		files: ['packages/observability/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/{logging,security,error-handling,cache,runtime,workload}{,/**}', '@ooopsstudio/edges{,/**}']
+			}]
+		}
+	},
+	{
+		files: ['packages/runtime/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/{logging,security,error-handling,cache,observability,workload}{,/**}', '@ooopsstudio/edges{,/**}']
+			}]
+		}
+	},
+	{
+		files: ['packages/workload/**/*.{ts,tsx,js,mjs,cjs}'],
+		rules: {
+			'no-restricted-imports': ['error', {
+				patterns: ['@ooopsstudio/{logging,security,error-handling,cache,observability,runtime}{,/**}', '@ooopsstudio/edges{,/**}']
 			}]
 		}
 	}

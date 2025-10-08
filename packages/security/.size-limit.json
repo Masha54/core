@@ -1,0 +1,7 @@
+[
+  { "name": "security: development", "path": ["dist/public/development.js"], "limit": "6 KB" },
+  { "name": "security: production",  "path": ["dist/public/production.js"],  "limit": "6 KB" },
+  { "name": "security: testing",     "path": ["dist/public/testing.js"],     "limit": "4 KB" },
+  { "name": "security: minimal",     "path": ["dist/public/minimal.js"],     "limit": "3 KB" },
+  { "name": "security: custom",      "path": ["dist/public/custom.js"],      "limit": "8 KB" }
+]

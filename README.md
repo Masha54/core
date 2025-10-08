@@ -1,250 +1,153 @@
-# Monorepo Template
+# Ooops Studio Monorepo
 
-Opinionated TypeScript + pnpm workspace monorepo template. It ships with Vitest (V8 coverage), ESLint (flat config), tsup builds, Husky + Commitlint, Changesets, dependency-cruiser, publint, are-the-types-wrong, and size-limit. Batteries included; vendor lock-in not included.
+Framework‑agnostic infrastructure libraries for production‑grade web apps. This repository houses small, composable packages with strict dependency boundaries, deterministic tests, and zero side effects at import. Packages are designed to be used in React/Next.js or Svelte/SvelteKit projects, but the libraries themselves are plain TypeScript/JavaScript.
 
-## Requirements
+## Architecture (level‑based)
 
-- Node 20.x or 22.x
-- pnpm 9.x
+**Downhill imports only.** Higher levels may depend on lower levels; never sideways or upward.
 
-## Quick start
+- **Level 0 — `@ooopsstudio/root`**  
+  Contracts, ports, tokens, and tiny utilities. No runtime logic, no side effects, no barrels.
+- **Level 1 — Engines**
+  DI‑free factories and primitives (e.g., datastructures, time, transport). Pure mechanisms, no presets.
+- **Level 2 — Edges**
+  `defaults` (safe fallbacks) and `bridges` (token‑only connectors). Optional, idempotent, no‑throw.
+- **Level 3 — Services**
+  Featureful libraries with presets (logging, metrics, tracing, error handling, etc.).
 
-1. Use this repository as a **Template** on GitHub.
-2. Clone your new repository and install:
-   - `pnpm install`
-3. Validate everything:
-   - `pnpm -w validate`  
-     (runs typecheck, lint, build, tests, size-limit, dep-cruise, publint, attw)
+Import rules are enforced with dependency‑cruiser and ESLint.
 
-## What’s inside
+## Implemented packages
 
-- **TypeScript**: strict, ESM, project references ready
-- **Vitest**: node environment, V8 coverage, per-package opt-in config
-- **ESLint (flat)**: tabs, single quotes, no semicolons, max line length 100
-- **tsup**: ESM output, d.ts, sourcemaps, tree-shakeable
-- **Husky + Commitlint**: Git hooks, Conventional Commits
-- **Changesets**: versioning and publishing flow
-- **dependency-cruiser**: no cycles, no unresolved, no importing other packages’ internals
-- **publint & are-the-types-wrong**: package publishing sanity checks
-- **size-limit**: per-entry bundle budgets
+### `@ooopsstudio/root` (Level 0)
 
-## Workspace layout
+Source of truth for **contracts**, **ports**, **tokens**, and tiny **utilities**. Everything is side‑effect‑free.
 
-```
-.
-├─ packages/
-│  └─ demo/                 # example package (you can delete or replace)
-├─ .github/workflows/ci.yml # CI pipeline (calls pnpm -w validate)
-├─ .github/workflows/release.yml # Auto-release (Changesets)
-├─ tsconfig.base.json       # shared TS config
-├─ eslint.config.js         # flat ESLint config
-├─ .dependency-cruiser.cjs  # graph rules (no cycles, no cross-internals)
-├─ package.json             # workspace scripts
-├─ README.md                # README file
-└─ vitest.config.ts         # vitest config
-```
-
-## Common scripts (root)
-
-- `pnpm -w typecheck` — TypeScript type check for the workspace  
-- `pnpm -w lint` — ESLint across the workspace  
-- `pnpm -w build` — build all packages with tsup  
-- `pnpm -w test` — run Vitest across packages  
-- `pnpm -w size` — run size-limit across packages  
-- `pnpm -w depcruise` — dependency-cruiser checks  
-- `pnpm -w publint` — publint checks on built packages  
-- `pnpm -w attw` — are-the-types-wrong checks  
-- `pnpm -w validate` — runs the full validation pipeline above
-
-Filter by package: `pnpm -w -F @your-scope/<pkg> <script>`
-
----
-
-## Auto-release (Changesets + GitHub Actions)
-
-Two supported ways to authenticate with npm:
-
-### Option A: Classic npm token (fastest)
-
-1) Create npm token  
-- On npmjs.com → Access Tokens → Generate new token (automation).  
-- Copy the token.
-
-2) Add repo secret  
-- GitHub → your repo → Settings → Secrets and variables → Actions → **New repository secret**  
-- Name: `NPM_TOKEN`  
-- Value: your npm token
-
-3) Ensure packages are publishable  
-Inside each `packages/<name>/package.json`:
-- `"name": "@your-scope/<name>"` (or unscoped if you prefer)  
-- `"version": "0.0.0"` (or whatever you start with)  
-- `"publishConfig": { "access": "public" }` for scoped public packages  
-- `"files": ["dist"]` and your build emits to `dist/`  
-- `repository`, `author`, `license` filled in
-
-4) Release workflow  
-This template includes `.github/workflows/release.yml` that:
-- installs Node + pnpm
-- runs `pnpm -w validate`
-- runs `changesets/action@v1` to open a **Version Packages** PR and to publish after it’s merged
-
-If GitHub blocks PR creation by Actions in your org, add a **Personal Access Token (classic)** with `repo` scope as a secret named `RELEASE_TOKEN` and set the action to use it:
-- In `release.yml`, set `GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}` for the Changesets step.
-
-### Option B: npm Trusted Publishing (OIDC; no long-lived token)
-
-1) Link repo to npm
-- On npmjs.com → your org or package → **Trusted publishers** → Add GitHub repository/workflow as a trusted publisher (follow the UI steps).
-
-2) Enable provenance  
-- In `release.yml`, ensure:
-  - `permissions: id-token: write`
-  - `NPM_CONFIG_PROVENANCE: true` env
-- Remove `NPM_TOKEN` usage.
-
-3) First publish  
-If the package doesn’t exist on npm yet, you can still publish via trusted publishing once configured. If the UI blocks linking until the package exists, do a one-time manual publish locally with `npm publish --access public`, then switch to trusted publishing.
-
----
-
-## Release flow (TL;DR)
-
-1) Create a feature branch  
-2) Do your changes  
-3) Create a changeset: `pnpm -w changeset`  
-   - choose affected packages and bump type (patch/minor/major)  
-4) Commit and push your branch  
-5) Open PR → merge PR  
-6) The release workflow will open a **Version Packages** PR (bumps versions, writes changelogs)  
-7) Merge the **Version Packages** PR into `main`  
-8) The release workflow publishes to npm
-
-> No changeset = no version bump = no publish.
-
-### Manual publish (optional)
-
-- `pnpm -w changeset version`  
-- `pnpm install`  
-- `pnpm -w build`  
-- `pnpm -w changeset publish`
-
----
-
-## Adding a new package
-
-Create `packages/<name>/` with:
-
-```
-packages/<name>/
-├─ package.json
-├─ tsconfig.json
-├─ tsup.config.ts
-├─ size-limit.json
-├─ src/
-│  └─ index.ts
-└─ test/
-   └─ index.test.ts
-```
-
-**package.json (example):**
-```json
-{
-  "name": "@your-scope/<name>",
-  "version": "0.0.0",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": { "import": "./dist/index.js", "types": "./dist/index.d.ts" }
-  },
-  "publishConfig": { "access": "public" },
-  "scripts": {
-    "build": "tsup",
-    "test": "vitest run",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint ."
-  }
-}
-```
-
-**tsconfig.json:**
-```json
-{
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "rootDir": "src",
-    "outDir": "dist",
-    "types": ["node"]
-  },
-  "include": ["src"],
-  "exclude": ["dist", "coverage", "node_modules"]
-}
-```
-
-**tsup.config.ts:**
+**Import style**
 ```ts
-import {defineConfig} from 'tsup'
-
-export default defineConfig({
-  entry: { index: 'src/index.ts' },
-  format: ['esm'],
-  platform: 'neutral',
-  target: 'es2022',
-  dts: true,
-  sourcemap: true,
-  clean: true,
-  splitting: false,
-  treeshake: true,
-  minify: false
-})
+import type { Logging } from '@ooopsstudio/root/contracts/logging'
+import type { LogSink } from '@ooopsstudio/root/ports/transport'
+import { TOK } from '@ooopsstudio/root/tokens'
 ```
 
-**size-limit.json:**
+**No barrels.** Subpath imports only.
+
+## Repository layout
+
+```
+/packages
+  /root
+    src/
+      contracts/
+      ports/
+      tokens/
+      utils/
+      testing/
+    size-limit.json
+/specs
+  /registry
+    engines.yaml, services.yaml, ports.yaml, tokens.yaml
+	/schemas
+		engines.schema.json, services.schema.json, ports.schema.json, tokens.schema.json
+/.github/workflows
+  ci.yml
+eslint.config.js
+tsconfig.base.json
+vitest.config.ts
+.dependency-cruiser.cjs
+```
+
+## Tooling and configs
+
+- **Package manager:** pnpm workspaces (root lockfile)
+- **Node / pnpm:** Node 20.x and 22.x; pnpm 9.x
+- **TypeScript:** latest stable; strict; `no any` policy; shared `tsconfig.base.json`
+- **Bundler:** tsup (ESM + d.ts + sourcemaps; `"sideEffects": false` where valid)
+- **Tests:** Vitest (Node environment, V8 coverage); thresholds enforced in CI
+- **Linting:** ESLint flat config with `@typescript-eslint`, `@stylistic`, `eslint-plugin-import` + TS resolver
+- **Graph checks:** dependency‑cruiser (cycles and level fences)
+- **Size budget:** size‑limit (per package, min+gzip budgets)
+- **Publishing:** changesets (semver, per‑package changelogs)
+- **Commits:** commitlint (Conventional Commits) + Husky hooks
+
+## Scripts (root)
+
+Common entrypoints, run at the workspace root:
+
+```
+pnpm -w lint             # ESLint (flat config)
+pnpm -w typecheck        # TypeScript
+pnpm -w test             # Vitest + coverage
+pnpm -w build            # tsup
+pnpm -w size             # size-limit
+pnpm -w depcruise        # dependency-cruiser checks
+pnpm -w publint          # package export sanity
+pnpm -w attw             # are-the-types-wrong
+pnpm -w validate         # chains lint, typecheck, test, depcruise, publint, attw, size, registry validation
+```
+
+Per‑package runs are filtered, for example:
+
+```
+pnpm -w -F @ooopsstudio/root test
+pnpm -w -F @ooopsstudio/root build
+pnpm -w -F @ooopsstudio/root size
+```
+
+## Continuous Integration
+
+GitHub Actions runs on pushes and PRs:
+
+- Matrix: Node 20.x and 22.x on `ubuntu-latest`
+- Caching: setup‑node cache for pnpm store
+- Fast paths: doc‑only and “no packages changed” checks
+- Single entrypoint: CI invokes `pnpm -w validate` to keep logic in code, not YAML
+
+## Coding standards
+
+- **Documentation policy:** every file starts with a single `@file` JSDoc paragraph that explains when/why/what/how and ends with an inline “Example:”. Every exported symbol has concise JSDoc with `@param`, `@returns`, and at least one deterministic `@example`.
+- **No `any`:** prefer `unknown` with guards or generics.
+- **No side effects at import:** functions/constants only.
+- **Security:** never log secrets/PII; redaction is on by default in services that support it.
+- **Imports:** explicit subpaths from `@ooopsstudio/root`; services communicate via ports and tokens, not direct imports.
+
+## Size budgets
+
+Each package defines its own `size-limit.json`. For root:
+
 ```json
 [
-  { "name": "<name>", "path": ["dist/index.js"], "limit": "6 KB" }
+  {
+    "name": "root: runtime surfaces",
+    "path": [
+      "dist/contracts/*.js",
+      "dist/ports/*.js",
+      "dist/tokens/index.js",
+      "dist/utils/*.js"
+    ],
+    "limit": "5 kB"
+  },
+  {
+    "name": "root: logging contract (sentinel)",
+    "path": "dist/contracts/logging.js",
+    "limit": "1.5 kB"
+  }
 ]
 ```
 
----
+## Versioning & releases
 
-## Linting & style
+- Managed by **Changesets**.
+- Ports and tokens are **public API**. Renaming or removing them is a major version.
+- Additive type fields are minor; breaking type changes are major.
 
-- Tabs, single quotes, no semicolons, max line length 100  
-- No `any` in TypeScript (enforced)  
-- Don’t import another package’s `/src/**` (use published exports)  
-- Don’t use test helpers in runtime code
+## Contributing
 
-## Testing
-
-- Put tests under `test/` or `**/*.test.ts`  
-- Node environment by default  
-- Coverage via V8; adjust thresholds per package if needed  
-- Root Vitest config supports `passWithNoTests: true` so empty packages don’t fail CI
-
-## CI
-
-The GitHub Actions workflow calls `pnpm -w validate` so checks live in code, not YAML. It runs on push and pull requests for Node 20.x and 22.x.
-
-## Troubleshooting
-
-- **“GitHub Actions is not permitted to create or approve pull requests.”**  
-  Use a PAT (classic) with `repo` scope as `RELEASE_TOKEN` and set `GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}` in the release job.
-
-- **“No publish happened.”**  
-  Ensure a changeset exists and that the **Version Packages** PR was merged into `main`.
-
-- **“npm auth failed.”**  
-  Check `NPM_TOKEN` secret (for token auth) or your npm “Trusted publishers” configuration (for OIDC).
-
-- **“Package not found / 403 on first publish.”**  
-  For scoped public packages, ensure `"publishConfig": { "access": "public" }`. For OIDC, you may need a one-time manual publish before switching fully to trusted publishing, depending on your npm org settings.
+1. Follow the documentation policy and “no `any`” rule.
+2. Add tests for every exported API; use `@ooopsstudio/root/testing` fakes for deterministic behavior.
+3. Respect level fences; avoid service↔service imports.
+4. Run `pnpm -w validate` locally before pushing.
 
 ## License
 
-MIT (change as needed).
+MIT © Ooops Design Studio

@@ -1,0 +1,61 @@
+ports:
+  # Logging contracts
+  - id: logger
+    direction: inbound
+    module: "@ooopsstudio/root/contracts/logging"
+    type: "Logger"
+    since: "0.1.0"
+    status: stable
+    description: "Structured logger API with levels and safe write semantics."
+
+  - id: log-record
+    direction: common
+    module: "@ooopsstudio/root/contracts/logging"
+    type: "LogRecord"
+    since: "0.1.0"
+    status: stable
+    description: "Canonical log record data shape."
+
+  - id: log-sink
+    direction: outbound
+    module: "@ooopsstudio/root/contracts/sink"
+    type: "Sink"
+    typeParams: ["LogRecord"]
+    since: "0.1.0"
+    status: stable
+    description: "Outbound sink for emitting log records."
+
+  - id: recent-log-events
+    direction: common
+    module: "@ooopsstudio/root/contracts/recent-events"
+    type: "RecentEvents"
+    typeParams: ["LogRecord"]
+    since: "0.1.0"
+    status: stable
+    description: "Read-only access to recent log events."
+
+  # Common contracts
+  - id: clock
+    direction: inbound
+    module: "@ooopsstudio/root/contracts/clock"
+    type: "Clock"
+    since: "0.1.0"
+    status: stable
+    description: "Time source abstraction."
+
+  - id: security-redactor
+    direction: inbound
+    module: "@ooopsstudio/root/ports/security"
+    type: "SecurityRedactor"
+    since: "0.1.0"
+    status: stable
+    description: "Redaction API for secrets/PII."
+
+  - id: transport
+    direction: outbound
+    module: "@ooopsstudio/root/ports/transport"
+    type: "Transport"
+    typeParams: ["T"]
+    since: "0.1.0"
+    status: stable
+    description: "Abstract transport for batching/sending records."

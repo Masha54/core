@@ -1,0 +1,102 @@
+{
+    "name": "@ooopsstudio/workload",
+    "description": "Workload management with rate limiting, resilience patterns, scheduling, and resource optimization.",
+    "version": "0.0.0",
+    "type": "module",
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "license": "MIT",
+    "engines": {
+        "node": ">=20 <23"
+    },
+    "exports": {
+        ".": null,
+        "./ratelimit/development": {
+            "types": "./dist/ratelimit/public/development.d.ts",
+            "import": "./dist/ratelimit/public/development.js"
+        },
+        "./ratelimit/production": {
+            "types": "./dist/ratelimit/public/production.d.ts",
+            "import": "./dist/ratelimit/public/production.js"
+        },
+        "./ratelimit/testing": {
+            "types": "./dist/ratelimit/public/testing.d.ts",
+            "import": "./dist/ratelimit/public/testing.js"
+        },
+        "./ratelimit/minimal": {
+            "types": "./dist/ratelimit/public/minimal.d.ts",
+            "import": "./dist/ratelimit/public/minimal.js"
+        },
+        "./ratelimit/custom": {
+            "types": "./dist/ratelimit/public/custom.d.ts",
+            "import": "./dist/ratelimit/public/custom.js"
+        },
+        "./ratelimit/types": {
+            "types": "./dist/ratelimit/public/types.d.ts",
+            "import": "./dist/ratelimit/public/types.js"
+        },
+        "./resilience/development": {
+            "types": "./dist/resilience/public/development.d.ts",
+            "import": "./dist/resilience/public/development.js"
+        },
+        "./resilience/production": {
+            "types": "./dist/resilience/public/production.d.ts",
+            "import": "./dist/resilience/public/production.js"
+        },
+        "./resilience/testing": {
+            "types": "./dist/resilience/public/testing.d.ts",
+            "import": "./dist/resilience/public/testing.js"
+        },
+        "./resilience/minimal": {
+            "types": "./dist/resilience/public/minimal.d.ts",
+            "import": "./dist/resilience/public/minimal.js"
+        },
+        "./resilience/custom": {
+            "types": "./dist/resilience/public/custom.d.ts",
+            "import": "./dist/resilience/public/custom.js"
+        },
+        "./resilience/types": {
+            "types": "./dist/resilience/public/types.d.ts",
+            "import": "./dist/resilience/public/types.js"
+        },
+        "./scheduling/development": {
+            "types": "./dist/scheduling/public/development.d.ts",
+            "import": "./dist/scheduling/public/development.js"
+        },
+        "./scheduling/production": {
+            "types": "./dist/scheduling/public/production.d.ts",
+            "import": "./dist/scheduling/public/production.js"
+        },
+        "./scheduling/testing": {
+            "types": "./dist/scheduling/public/testing.d.ts",
+            "import": "./dist/scheduling/public/testing.js"
+        },
+        "./scheduling/minimal": {
+            "types": "./dist/scheduling/public/minimal.d.ts",
+            "import": "./dist/scheduling/public/minimal.js"
+        },
+        "./scheduling/custom": {
+            "types": "./dist/scheduling/public/custom.d.ts",
+            "import": "./dist/scheduling/public/custom.js"
+        },
+        "./scheduling/types": {
+            "types": "./dist/scheduling/public/types.d.ts",
+            "import": "./dist/scheduling/public/types.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "typecheck": "tsc -p tsconfig.json --noEmit",
+        "lint": "eslint .",
+        "test": "vitest run",
+        "build": "tsup",
+        "depcruise": "depcruise --no-config src",
+        "size": "size-limit",
+        "publint": "publint",
+        "attw": "pnpm -r --filter \"./packages/*\" exec attw --pack --ignore-rules no-resolution --ignore-rules cjs-resolves-to-esm"
+    }
+}
