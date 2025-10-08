@@ -1,0 +1,56 @@
+name: ci
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      docs: ${{ steps.changes.outputs.docs }}
+      pkgs: ${{ steps.changes.outputs.pkgs }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed paths
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filters: |
+            docs:
+              - 'docs/**'
+              - '**/*.md'
+            pkgs:
+              - 'packages/**'
+              - '.github/**'
+  validate:
+    needs: detect
+    # Run unless it's docs-only (docs == true AND pkgs != true)
+    if: ${{ !(needs.detect.outputs.docs == 'true' && needs.detect.outputs.pkgs != 'true') }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix['node-version'] }}
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Validate (lint, typecheck, tests, depcruise, publint, attw)
+        run: pnpm -w validate
